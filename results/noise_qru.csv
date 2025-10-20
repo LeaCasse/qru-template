@@ -1,1 +1,2 @@
 p,gamma,shots,L,N,epochs,lr,seed,train_mse
+0.0,0.0,1000,4,128,60,0.01,0,0.02568669058382511
