@@ -92,24 +92,32 @@ Input normalization (`zscore`) and output scaling ([0, 1]) yield faster and more
 Unscaled sine still converges to low MSE, validating QRU expressivity.
 
 ---
+## 🔬 Noise Experiments
 
-## 🧩 NISQ / Noise Protocol
+**Setup.** `default.mixed` with shots; after each layer: `DepolarizingChannel(p)`, `AmplitudeDamping(γ)`, `PhaseDamping(γ)`. Default: L=4, N=128, epochs=60, Adam(lr=1e-2), shots=1000, target y=sin(x), x∈[−π,π].
 
-Provided via `qru/noise_protocol.md` and `examples/regression_sine_noisy.py`.
+**Single-seed sweep (final train MSE @60 epochs):**
 
-**Setup:**
-- Device: `default.mixed` with finite shots (e.g. 1000)
-- Noise: `DepolarizingChannel(p)`, `AmplitudeDamping(γ)`, `PhaseDamping(γ)`
-- Sweep: `p, γ ∈ {0, 0.001, 0.01, 0.05}`
-- Metrics: MSE / Accuracy
-- Output: `results/noise_qru.csv`
+| p \ γ   | 0       | 0.001   | 0.01     |
+|---------|---------|---------|----------|
+| **0**   | 0.02569 | 0.03254 | 0.09397  |
+| **0.001** | 0.06018 | 0.01037 | 0.10646  |
+| **0.01**  | 0.16276 | 0.03392 | **0.05776** |
 
-**Run:**
-```bash
-python examples\regression_sine_noisy.py --p 0.001 --g 0.001
-python examples\regression_sine_noisy.py --sweep quick
+*Mild noise can regularize, but effects are non-monotonic.*
+
+**Multi-seed check (p=γ=0.01, 5 seeds, 60 epochs, 1000 shots):**  
+MSEs = `0.03421, 0.01282, 0.03409, 0.12565, 0.08201` → **mean ± std = 0.05776 ± 0.04082** (min/max 0.01282/0.12565).  
+*A single run can be <0.01; average is higher → sensitivity to init & finite-shot noise.*
+
+**Reproduce.**
 ```
+# sweep appends to results/noise_qru.csv
+python examples/regression_sine_noisy.py --sweep quick
 
+# multi-seed writes results/noise_qru_p001_g001_seeds.csv
+python examples/verify_p001_g001_multi_seed.py --seeds 5 --epochs 60 --shots 1000
+```
 ---
 
 ## 🧱 API Example
