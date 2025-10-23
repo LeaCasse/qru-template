@@ -30,10 +30,16 @@ qru-template/
 │  ├─ regression_sine_noisy.py
 │  ├─ classification_ce_fast.py
 │  ├─ classification_threshold.py
-│  └─ classification_threshold_fast.py
+│  ├─ classification_threshold_fast.py
+│  └─ verify_p001_g001_multi_seed
+├─ tests/
+│  ├─ noise_qru.csv
+│  └─ noise_qru_p001_g001_seeds.csv
 ├─ tests/
 │  ├─ test_shapes.py
 │  └─ test_training_step.py
+├─ .gitignore
+├─ LICENSE
 ├─ requirements.txt
 └─ README.md
 ```
