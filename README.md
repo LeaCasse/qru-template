@@ -35,7 +35,7 @@ qru-template/
 ├─ tests/
 │  ├─ noise_qru.csv
 │  └─ noise_qru_p001_g001_seeds.csv
-├─ tests/
+├─ results/
 │  ├─ test_shapes.py
 │  └─ test_training_step.py
 ├─ .gitignore
