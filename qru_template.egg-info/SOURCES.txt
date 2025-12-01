@@ -1,0 +1,12 @@
+LICENSE.txt
+README.md
+pyproject.toml
+qru/__init__.py
+qru/qru_pennylane.py
+qru_template.egg-info/PKG-INFO
+qru_template.egg-info/SOURCES.txt
+qru_template.egg-info/dependency_links.txt
+qru_template.egg-info/requires.txt
+qru_template.egg-info/top_level.txt
+tests/test_shapes.py
+tests/test_training_step.py

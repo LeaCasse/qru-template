@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "qru-template"
+version = "0.1.0"
+description = "Minimal 1-qubit Quantum Re-Uploading Unit template for PennyLane + PyTorch."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "Apache-2.0"}
+dependencies = [
+    "pennylane>=0.36,<0.43",
+    "torch>=2.1,<3.0",
+    "numpy>=1.24,<2.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[tool.setuptools]
+packages = ["qru"]
